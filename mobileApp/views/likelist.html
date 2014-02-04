@@ -1,0 +1,68 @@
+<div data-role="view" id="likelist" class="productlist" data-title="My liked products"
+      data-init="initLikeList">
+
+
+    <ul id="likeListUl"></ul>
+
+</div>
+
+
+<script id="productListTemplate" type="text/x-kendo-template">
+
+    <a href="\#hierarchical-view?parent=#: data.id #" class="# if (data.isSale) { # sale # } #">
+        <span class="productImg" style="background-image: url('#: img #')"></span>
+        <h2>#: name # </h2>
+        <h3>#: shop #</h3>
+        <span class="price">#: price #</span>
+        # if (data.isSale) { #
+        <span class="reducedPrice">#: price #</span>
+        # } #
+    </a>
+
+
+</script>
+
+
+<!-- detail view
+http://demos.kendoui.com/mobile/listview/editing.html
+
+-->
+
+<script>
+
+
+    var likedProducts = null;
+
+    function demoData() {
+        likedProducts = [
+            {img: '/_server/img/1.jpg', name: 'Esprit Shirt Rot', price: 14.99,isSale:true, reducedPrice:12.99, shop:'Esprit', detail:'blabla', id: 1234 },
+            {img: '/_server/img/2.jpg', name: 'Esprit Shirt Rot', price: 14.99,isSale:false, reducedPrice:12.99, shop:'Esprit', detail:'blabla', id: 1234 },
+            {img: '/_server/img/3.jpg', name: 'Esprit Shirt Rot', price: 14.99,isSale:false, reducedPrice:12.99, shop:'Esprit', detail:'blabla', id: 1234 },
+            {img: '/_server/img/4.jpg', name: 'Esprit Shirt Rot', price: 14.99,isSale:true, reducedPrice:12.99, shop:'Esprit', detail:'blabla', id: 1234 },
+            {img: '/_server/img/5.jpg', name: 'Esprit Shirt Rot', price: 14.99,isSale:false, reducedPrice:12.99, shop:'Esprit', detail:'blabla', id: 1234 }
+        ]
+    }
+
+    function closeModalView(e) {
+        // find the closest modal view, relative to the button element.
+        var modalView = e.sender.element.closest("[data-role=modalview]").data("kendoMobileModalView");
+        modalView.close();
+    }
+    function dislikeProduct (e) {
+        nextImage();
+
+    }
+    function likeProduct (e) {
+        nextImage();
+    }
+    function initLikeList(e) {
+        demoData();
+
+        e.view.element.find("#likeListUl").kendoMobileListView({
+            template: $("#productListTemplate").text(),
+            dataSource: kendo.data.DataSource.create(likedProducts)
+        });
+
+
+    }
+</script>

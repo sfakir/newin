@@ -1,0 +1,36 @@
+<div data-role="view" id="newin" class="stackView" data-title="New In"
+     data-model="newinViewModel" data-init="initStackView">
+    <div data-role="content">
+        <div id="stack" class="imageContainer">
+            <div><img src="/_server/img/1.jpg" alt="" /></div>
+            <div><img src="/_server/img/2.jpg" alt="" /></div>
+            <div><img src="/_server/img/3.jpg" alt="" /></div>
+            <div><img src="/_server/img/4.jpg" alt="" /></div>
+            <div><img src="/_server/img/5.jpg" alt="" /></div>
+            <div><img src="/_server/img/6.jpg" alt="" /></div>
+        </div>
+        <div id="rateMenu">
+            <a class="btn btnDislike " data-click="dislikeProduct"  data-role="button">Like</a>
+            <a class="btn btnInfo " href="#productDetails"  data-rel="modalview" data-role="button"></a>
+            <a class="btn btnLike " data-click="likeProduct"  data-role="button">Like</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function closeModalView(e) {
+        // find the closest modal view, relative to the button element.
+        var modalView = e.sender.element.closest("[data-role=modalview]").data("kendoMobileModalView");
+        modalView.close();
+    }
+    function dislikeProduct (e) {
+        nextImage();
+
+    }
+    function likeProduct (e) {
+        nextImage();
+    }
+    function initStackView() {
+
+    }
+</script>
